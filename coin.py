@@ -4,6 +4,7 @@ from discord.ext import commands
 import aiosqlite
 import random
 from datetime import datetime
+import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -511,6 +512,18 @@ async def reset(interaction: discord.Interaction, cible: discord.User):
     await interaction.response.send_message(embed=embed)
 
 
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return 'Bot is running!'
+
+if __name__ == '__main__':
+    app.run()
+
 
 # --------- LANCEMENT BOT ---------
-bot.run("MTQyNzczNzI3ODA2MjY2MTc0NA.GiBo_A.vQBfjALYcAqW0LLWtY5Ara8H5DQhLM3sQP-7UY")
+bot.run(os.getenv(Token))
+
